@@ -5,4 +5,14 @@
     <string name="ivan_ivanov">Ivan Ivanov</string>
     <string name="edit">Edit</string>
     <string name="save">Save</string>
+    <string name="sercomm_g450">Sercomm G450</string>
+    <string name="sercomm_g550">Sercomm G550</string>
+    <string name="micasaverde_veralite">MiCasaVerde VeraLite</string>
+    <string name="sercomm_na900">Sercomm NA900</string>
+    <string name="sercomm_na301">Sercomm NA301</string>
+    <string name="sercomm_na930">Sercomm NA930</string>
+    <string name="sn">SN -</string>
+    <string name="mac_address">MAC address -</string>
+    <string name="firm_ware">Firm ware -</string>
+    <string name="model">Model -</string>
 </resources>

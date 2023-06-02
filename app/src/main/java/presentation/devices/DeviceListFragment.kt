@@ -27,17 +27,13 @@ class DeviceListFragment : Fragment(), ClickListener {
     private lateinit var mAdapter: DevicesAdapter
     private var deviceList: MutableList<Device> = mutableListOf()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        addListeners()
+        addObservers()
         vm.getDevices()
     }
 
-    private fun addListeners() {
+    private fun addObservers() {
         vm.devices.observe(viewLifecycleOwner) {
             if (it == null) {
                 Toast.makeText(requireContext(), "server error", Toast.LENGTH_LONG).show()
@@ -51,7 +47,7 @@ class DeviceListFragment : Fragment(), ClickListener {
     private fun updateDevicesList(deviceList: List<Device>) {
         val manager: RecyclerView.LayoutManager =
             LinearLayoutManager(activity)
-        mAdapter = DevicesAdapter(deviceList, clickListener = this)
+        mAdapter = DevicesAdapter(requireContext(), deviceList, clickListener = this)
         binding.rvDevices.layoutManager = manager
         binding.rvDevices.adapter = mAdapter
     }
@@ -59,7 +55,7 @@ class DeviceListFragment : Fragment(), ClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         navController = findNavController()
         binding = FragmentDeviceListBinding.inflate(layoutInflater)
@@ -76,11 +72,8 @@ class DeviceListFragment : Fragment(), ClickListener {
 
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("Delete device?")
-        builder.setNegativeButton(android.R.string.no) { dialog, which ->
-
-        }
-
-        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+        builder.setNegativeButton(android.R.string.no) { _, _ -> }
+        builder.setPositiveButton(android.R.string.yes) { _, _ ->
             deviceList.remove(item)
             mAdapter.deviceList = deviceList
             item.deleted = true
@@ -90,7 +83,6 @@ class DeviceListFragment : Fragment(), ClickListener {
 
         builder.show()
     }
-
     override fun editButtonClick(item: Device) {
         val bundle = bundleOf(Pair("device", item))
         bundle.putBoolean("edit", true)

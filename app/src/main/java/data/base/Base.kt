@@ -11,7 +11,6 @@ import data.base.models.DeviceDb
 abstract class Base: RoomDatabase() {
 
     private var db: Base? = null
-
     open fun getDataBase(applicationContext: Context?): Base? {
         if (db == null) {
             db = Room.databaseBuilder(
@@ -23,7 +22,5 @@ abstract class Base: RoomDatabase() {
         }
         return db
     }
-
     abstract fun deviceDao(): DeviceDao?
-
 }

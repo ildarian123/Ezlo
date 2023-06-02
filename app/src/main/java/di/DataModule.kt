@@ -23,7 +23,6 @@ import javax.inject.Singleton
 class DataModule {
 
     var EZLO_API_URL = "https://veramobile.mios.com"
-
     @Provides
     @Singleton
     fun provideNetworkApi(client: OkHttpClient): EzloApi {
@@ -33,7 +32,6 @@ class DataModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build().create(EzloApi::class.java)
     }
-
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
@@ -46,7 +44,6 @@ class DataModule {
             .writeTimeout(5, TimeUnit.MINUTES)
             .build()
     }
-
     @Provides
     @Singleton
     fun provideDataBaseRepository(db: Base): DataBaseRepositoryImpl {

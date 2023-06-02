@@ -38,7 +38,7 @@ class DeviceViewModel @Inject constructor(
         }
     }
 
-    fun saveDevicesToDb(devices: List<Device>) {
+    private fun saveDevicesToDb(devices: List<Device>) {
         val listOfDevicesDb = mutableListOf<DeviceDb>()
         devices.forEach {
             listOfDevicesDb.add(convertToDeviceDb(it))
@@ -54,7 +54,7 @@ class DeviceViewModel @Inject constructor(
         }
     }
 
-    fun convertToDeviceDb(device: Device): DeviceDb {
+    private fun convertToDeviceDb(device: Device): DeviceDb {
         val deviceDb = DeviceDb()
         deviceDb.pk_Device = device.PK_Device ?: 0
         deviceDb.MacAddress = device.MacAddress ?: ""
@@ -74,20 +74,20 @@ class DeviceViewModel @Inject constructor(
         return deviceDb
     }
 
-    fun convertToDevice(deviceDb: DeviceDb): Device {
+    private fun convertToDevice(deviceDb: DeviceDb): Device {
         val device = Device()
-        device.PK_Device = deviceDb.pk_Device ?: 0
-        device.MacAddress = deviceDb.MacAddress ?: ""
-        device.PK_DeviceType = deviceDb.PK_DeviceType ?: 0
-        device.PK_DeviceSubType = deviceDb.PK_DeviceSubType ?: 0
-        device.Firmware = deviceDb.Firmware ?: ""
-        device.Server_Device = deviceDb.Server_Device ?: ""
-        device.Server_Event = deviceDb.Server_Event ?: ""
-        device.Server_Account = deviceDb.Server_Account ?: ""
-        device.InternalIP = deviceDb.InternalIP ?: ""
-        device.LastAliveReported = deviceDb.LastAliveReported ?: ""
-        device.Platform = deviceDb.Platform ?: ""
-        device.title = deviceDb.title ?: ""
+        device.PK_Device = deviceDb.pk_Device
+        device.MacAddress = deviceDb.MacAddress
+        device.PK_DeviceType = deviceDb.PK_DeviceType
+        device.PK_DeviceSubType = deviceDb.PK_DeviceSubType
+        device.Firmware = deviceDb.Firmware
+        device.Server_Device = deviceDb.Server_Device
+        device.Server_Event = deviceDb.Server_Event
+        device.Server_Account = deviceDb.Server_Account
+        device.InternalIP = deviceDb.InternalIP
+        device.LastAliveReported = deviceDb.LastAliveReported
+        device.Platform = deviceDb.Platform
+        device.title = deviceDb.title
 
         return device
     }
