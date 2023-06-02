@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragment_devices">
+
+
+    <fragment
+        android:id="@+id/fragment_devices"
+        android:name="presentation.devices.DeviceListFragment"
+        tools:layout="@layout/fragment_device_list">
+
+        <action
+            android:id="@+id/action_devices_fragment_to_device_details_fragment"
+            app:destination="@id/fragment_device_details" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_device_details"
+        android:name="presentation.devicedetails.DeviceDetailsFragment"
+        tools:layout="@layout/fragment_device_details">
+
+        <argument
+            android:name="device"
+            app:argType="domain.models.Device"
+            app:nullable="false" />
+
+        <argument
+            android:name="edit"
+            app:argType="boolean"
+            app:nullable="false" />
+    </fragment>
+</navigation>
